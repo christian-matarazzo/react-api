@@ -6,13 +6,15 @@ import axios from 'axios';
 import AppFooter from './components/AppFooter';
 import AppHeader from './components/AppHeader';
 import AppMain from './components/AppMain';
+import AppRender from './components/AppRender';
 
 function App() {
 
   return (
     <>
     <AppHeader></AppHeader>
-    <AppMain></AppMain>
+    {/* <AppMain></AppMain> */}
+    <AppRender></AppRender>
     <AppFooter></AppFooter>
     </>
   )

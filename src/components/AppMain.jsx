@@ -31,6 +31,11 @@ export default function AppMain() {
     useEffect(() => { getActors() }, []) /* usiamo useEffect per effettuare il richiamo della funzione getActors, in modo tale da inizializzare la pagina con le card invece che un pulsante per triggherare l'evento */
     useEffect(() => { getActress() }, [])
 
+
+        const allActors = [actors, actress]
+
+        console.log("ciao", allActors );
+        
     return (
         <>
             <main>
