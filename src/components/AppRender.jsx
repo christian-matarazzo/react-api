@@ -37,7 +37,7 @@ export default function AppRender() {
                     <h2 className='text-center'> Attori più famosi </h2>
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                         {allActors.map((actor) => /* map del nostro array con i gli API data */
-                            <div key={actor.id} className="col">
+                            <div key={actor.name} className="col">
                                 <div className="card h-100">
                                     <img className="card-img-top p-2 bg-dark " style={{ width: '100%', height: "50%", objectFit: "cover" }} src={actor.image} alt={actor.name} />
                                     <div className="card-body bg-dark text-white">
