@@ -4,6 +4,10 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 
 export default function AppFooter() {
     return (
-        <h1>Ciao</h1>
+ <div className="countainer-fluid bg-dark">
+
+            <span className='d-block footer text-white text-center'>®Wall of Fame 2026 - Made with some headache by Christian Matarazzo</span>
+</div>
+       
     )
 }

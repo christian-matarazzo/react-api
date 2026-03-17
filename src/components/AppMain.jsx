@@ -17,11 +17,10 @@ export default function AppMain() {
             .then((res) => { /* promise */
                 console.log(res.data); /* console log per vedere se i dati vengono richiamati */
                 setActors(res.data)
-
             })
     }
 
-
+    useEffect(() => {getActors()},[]) /* usiamo useEffect per effettuare il richiamo della funzione getActors, in modo tale da inizializzare la pagina con le card invece che un pulsante per triggherare l'evento */
 
 
     return (
@@ -30,18 +29,21 @@ export default function AppMain() {
                 <section>
                     <div className="container">
                         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                            <div className="col">
-                                <div className="card">
-                                    <img className="card-img-top" src="https://cdn.discordapp.com/attachments/1460718808175214683/1483425810990764085/SPOILER_fabio_green_long_hair.png?ex=69ba8b72&is=69b939f2&hm=09297b8ce5b59731d3992d56f5818d4c4862ba44e19347643960a5a23dc1da99&" alt="" />
-                                    <div className="card-body">
-                                    <p>Nome</p>
-                                    <p>Anno di nascita</p>
-                                    <p>Nazionalità</p>
-                                    <p>Biografia</p>
-                                    <p>Riconoscimenti</p>
+                            {actors.map((actor) => /* map del nostro array con i gli API data */
+                            <div key= {actor.id} className="col">
+                                <div className="card h-100">
+                                    <img className="card-img-top p-2 bg-dark " style={{ width: '100%', height: "50%", objectFit: "cover"}} src={actor.image} alt={actor.name} />
+                                    <div className="card-body bg-dark text-white">
+                                    <p>Nome: {actor.name}</p>
+                                    <p>Anno di nascita: {actor.birth_year}</p>
+                                    <p>Nazionalità: {actor.nationality}</p>
+                                    <p>Biografia: {actor.biography}</p>
+                                    <p>Riconoscimenti: {actor.awards.join()}</p>
+                                    <p>Film più famosi: {actor.known_for.join()}</p>
                                     </div>
                                 </div>
                             </div>
+                            )}
                         </div>
                     </div>
                 </section>
