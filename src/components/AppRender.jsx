@@ -46,7 +46,7 @@ export default function AppRender() {
                                         <p>Nazionalità: {actor.nationality}</p>
                                         <p>Biografia: {actor.biography}</p>
                                         <p>Riconoscimenti: {actor.awards.join()}</p>
-                                        <p>Film più famosi: {actor.known_for ? actor.known_for.join() : actor.most_famous_movies.join()}</p>
+                                        <p>Film più famosi: {actor.known_for ? actor.known_for.join() : actor.most_famous_movies.join()}</p> {/* usiamo un ternario per dettare la condizione di visualizzazione */}
                                     </div>
                                 </div>
                             </div>
