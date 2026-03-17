@@ -11,6 +11,7 @@ import { useState, useEffect } from 'react';
 export default function AppMain() {
 
     const [actors, setActors] = useState([]) /* dichiariamo una variabile useState con un array vuoto da usare per immagazzinare i dati della chiamata API */
+    const [actress, setActress] = useState([])
 
     function getActors() { /* facciamo una funzione per il fetch */
         axios.get("https://lanciweb.github.io/demo/api/actors/") /* usiamo axios per il fetch, inseriamo il link */
@@ -20,29 +21,56 @@ export default function AppMain() {
             })
     }
 
-    useEffect(() => {getActors()},[]) /* usiamo useEffect per effettuare il richiamo della funzione getActors, in modo tale da inizializzare la pagina con le card invece che un pulsante per triggherare l'evento */
+    function getActress() {
+        axios.get(" https://lanciweb.github.io/demo/api/actresses/")
+            .then((res) => {
+                setActress(res.data)
+            })
+    }
 
+    useEffect(() => { getActors() }, []) /* usiamo useEffect per effettuare il richiamo della funzione getActors, in modo tale da inizializzare la pagina con le card invece che un pulsante per triggherare l'evento */
+    useEffect(() => { getActress() }, [])
 
     return (
         <>
             <main>
                 <section>
                     <div className="container">
+                        <h2 className='text-center'> Attori più famosi </h2>
                         <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                             {actors.map((actor) => /* map del nostro array con i gli API data */
-                            <div key= {actor.id} className="col">
-                                <div className="card h-100">
-                                    <img className="card-img-top p-2 bg-dark " style={{ width: '100%', height: "50%", objectFit: "cover"}} src={actor.image} alt={actor.name} />
-                                    <div className="card-body bg-dark text-white">
-                                    <p>Nome: {actor.name}</p>
-                                    <p>Anno di nascita: {actor.birth_year}</p>
-                                    <p>Nazionalità: {actor.nationality}</p>
-                                    <p>Biografia: {actor.biography}</p>
-                                    <p>Riconoscimenti: {actor.awards.join()}</p>
-                                    <p>Film più famosi: {actor.known_for.join()}</p>
+                                <div key={actor.id} className="col">
+                                    <div className="card h-100">
+                                        <img className="card-img-top p-2 bg-dark " style={{ width: '100%', height: "50%", objectFit: "cover" }} src={actor.image} alt={actor.name} />
+                                        <div className="card-body bg-dark text-white">
+                                            <p>Nome: {actor.name}</p>
+                                            <p>Anno di nascita: {actor.birth_year}</p>
+                                            <p>Nazionalità: {actor.nationality}</p>
+                                            <p>Biografia: {actor.biography}</p>
+                                            <p>Riconoscimenti: {actor.awards.join()}</p>
+                                            <p>Film più famosi: {actor.known_for.join()}</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            )}
+                        </div>
+
+                        <h2 className='text-center my-5'>Le attrici più famose</h2>
+                        <div className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                            {actress.map((actress) => /* map del nostro array con i gli API data */
+                                <div key={actress.id} className="col">
+                                    <div className="card h-100">
+                                        <img className="card-img-top p-2 bg-dark " style={{ width: '100%', height: "50%", objectFit: "cover" }} src={actress.image} alt={actress.name} />
+                                        <div className="card-body bg-dark text-white">
+                                            <p>Nome: {actress.name}</p>
+                                            <p>Anno di nascita: {actress.birth_year}</p>
+                                            <p>Nazionalità: {actress.nationality}</p>
+                                            <p>Biografia: {actress.biography}</p>
+                                            <p>Riconoscimenti: {actress.awards.join()}</p>
+                                            <p>Film più famosi: {actress.most_famous_movies.join()}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             )}
                         </div>
                     </div>
